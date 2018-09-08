@@ -11,3 +11,6 @@ class Projectile(object):
     @property
     def mass(self):
         return self._mass
+
+    def __str__(self):
+        return "({}, {})".format(self.pos, self.speed)
