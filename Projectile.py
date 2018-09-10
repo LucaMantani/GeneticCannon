@@ -2,6 +2,10 @@ import numpy as np
 
 
 class Projectile(object):
+    """
+    Defines a Projectile with mass m. 
+    Speed and position are set by default at zero 2-dim.
+    """
 
     def __init__(self, mass):
         self._mass = mass
