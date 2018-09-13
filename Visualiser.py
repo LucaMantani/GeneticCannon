@@ -21,6 +21,8 @@ class Visualiser(object):
         # Initialize graphics objects
         castle = Rectangle((1.9, 0.0), 0.1, 0.1, color="red")
         axes.add_patch(castle)
+        cannon = Rectangle((0.0, 0.0), 0.15, 0.1, angle=self.cannon.angle())
+        axes.add_patch(cannon)
         ball = Circle((self.projectile.pos[0], self.projectile.pos[1]), 0.02)
         ball.set_visible(False)
         axes.add_patch(ball)
