@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from matplotlib.patches import Circle
+from matplotlib.patches import Circle, Rectangle
 
 
 class Visualiser(object):
@@ -19,6 +19,8 @@ class Visualiser(object):
         axes.set_ylim(0, 2)
 
         # Initialize graphics objects
+        castle = Rectangle((1.9, 0.0), 0.1, 0.1, color="red")
+        axes.add_patch(castle)
         ball = Circle((self.projectile.pos[0], self.projectile.pos[1]), 0.02)
         ball.set_visible(False)
         axes.add_patch(ball)
