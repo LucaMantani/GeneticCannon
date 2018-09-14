@@ -21,7 +21,7 @@ class Visualiser(object):
         # Initialize graphics objects
         castle = Rectangle((1.9, 0.0), 0.1, 0.1, color="red")
         axes.add_patch(castle)
-        cannon = Rectangle((0.0, 0.0), 0.15, 0.1, angle=self.cannon.angle())
+        cannon = Rectangle((0.0, -0.04), 0.15, 0.08, angle=self.cannon.angle())
         axes.add_patch(cannon)
         ball = Circle((self.projectile.pos[0], self.projectile.pos[1]), 0.02)
         ball.set_visible(False)
@@ -38,6 +38,9 @@ class Visualiser(object):
             self.physics.timestep(self.projectile)
 
             ball.center = (self.projectile.pos[0], self.projectile.pos[1])
+
+            if self.physics.collision(self.projectile):
+                raise TypeError
 
             return [ball]
 

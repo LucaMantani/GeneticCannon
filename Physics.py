@@ -20,3 +20,7 @@ class Physics(object):
         - self._viscosity / projectile.mass * projectile.speed
 
         projectile.pos += projectile.speed
+
+    def collision(self, projectile):
+        return (projectile.pos[0] > 1.9 and projectile.pos[0] < 2
+                and projectile.pos[1] > 0.0 and projectile.pos[1] < 0.1)
