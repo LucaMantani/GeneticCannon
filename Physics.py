@@ -21,6 +21,12 @@ class Physics(object):
 
         projectile.pos += projectile.speed
 
-    def collision(self, projectile):
-        return (projectile.pos[0] > 1.9 and projectile.pos[0] < 2
-                and projectile.pos[1] > 0.0 and projectile.pos[1] < 0.1)
+    def collision(self, projectile, castle):
+        xp = projectile.pos[0]
+        yp = projectile.pos[1]
+        xc = castle.pos[0]
+        yc = castle.pos[1]
+        width = castle.width
+        height = castle.height
+        return (xp > xc and xp < xc + width
+                and yp > yc and yp < yc + height)

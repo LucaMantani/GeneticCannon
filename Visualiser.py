@@ -5,9 +5,10 @@ from matplotlib.patches import Circle, Rectangle
 
 class Visualiser(object):
 
-    def __init__(self, cannon, projectile, physics):
+    def __init__(self, cannon, projectile, castle, physics):
         self.cannon = cannon
         self.projectile = projectile
+        self.castle = castle
         self.physics = physics
 
     def run(self):
@@ -19,7 +20,7 @@ class Visualiser(object):
         axes.set_ylim(0, 2)
 
         # Initialize graphics objects
-        castle = Rectangle((1.9, 0.0), 0.1, 0.1, color="red")
+        castle = Rectangle(tuple(self.castle.pos), self.castle.width, self.castle.height, color="red")
         axes.add_patch(castle)
         cannon = Rectangle((0.0, -0.04), 0.15, 0.08, angle=self.cannon.angle())
         axes.add_patch(cannon)
@@ -39,8 +40,8 @@ class Visualiser(object):
 
             ball.center = (self.projectile.pos[0], self.projectile.pos[1])
 
-            if self.physics.collision(self.projectile):
-                raise TypeError
+            # if self.physics.collision(self.projectile, self.castle):
+            #     raise TypeError
 
             return [ball]
 
