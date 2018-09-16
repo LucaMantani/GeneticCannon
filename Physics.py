@@ -30,3 +30,7 @@ class Physics(object):
         height = castle.height
         return (xp > xc and xp < xc + width
                 and yp > yc and yp < yc + height)
+
+    def distance(self, obj1, obj2):
+        distVec = obj1.pos - obj2.pos
+        return np.sqrt(np.dot(distVec, distVec))
