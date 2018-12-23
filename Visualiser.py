@@ -20,13 +20,18 @@ class Visualiser(object):
         axes.set_ylim(0, 2)
 
         # Initialize graphics objects
-        castle = Rectangle(tuple(self.castle.pos), self.castle.width, self.castle.height, color="red")
+        castle = Rectangle(tuple(self.castle.pos),
+                           self.castle.width, self.castle.height, color="red")
         axes.add_patch(castle)
         cannon = Rectangle((0.0, -0.04), 0.15, 0.08, angle=self.cannon.angle())
         axes.add_patch(cannon)
         ball = Circle((self.projectile.pos[0], self.projectile.pos[1]), 0.02)
         ball.set_visible(False)
         axes.add_patch(ball)
+
+        # shoot the ball
+
+        self.cannon.shoot(self.projectile)
 
         def animate(frameNumber):
             # Without this, a copy of the figure will always be shown at its

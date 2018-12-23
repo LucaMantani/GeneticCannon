@@ -16,5 +16,8 @@ class Projectile(object):
     def mass(self):
         return self._mass
 
+    def copy(self):
+        return Projectile(self.mass)
+
     def __str__(self):
         return "({}, {})".format(self.pos, self.speed)
