@@ -16,8 +16,8 @@ class Physics(object):
         Modifies the projectile speed and position according to
         Newton's mechanics laws.
         """
-        projectile.speed += -self._gravity * np.array([0, 1])
-        - self._viscosity / projectile.mass * projectile.speed
+        projectile.speed += - self._gravity * np.array([0, 1]) \
+                            - self._viscosity / projectile.mass * projectile.speed
 
         projectile.pos += projectile.speed
 
