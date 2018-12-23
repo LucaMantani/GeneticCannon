@@ -52,7 +52,9 @@ class Visualiser(object):
 
         ani = animation.FuncAnimation(figure,
                                       animate,
+                                      frames=100,
                                       interval=25,
+                                      repeat=False,
                                       blit=True)
 
         plt.show()

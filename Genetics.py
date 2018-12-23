@@ -5,21 +5,26 @@ from Cannon import Cannon
 def generateInitialPopulation(size):
     return [Cannon(np.random.rand(2)/10) for _ in range(size)]
 
-def score(cannon, projectile, castle, physics):
 
-    projectile = projectile.copy()
+def generateSon(parents):
+    '''
+    It takes the parents impulse and produce a cannon son whose impulse
+    is the average of the parents impulses
+    '''
+    parent1, parent2 = parents
+    newImpulse = (parent1.impulse + parent2.impulse) / 2
 
-    cannon.shoot(projectile)
+    # mutation
+    newImpulse += (np.random.rand(2)-0.5)/300
+    return Cannon(newImpulse)
 
-    rel_pos = []
 
-    while projectile.pos[1] >= castle.pos[1]:
-        physics.timestep(projectile)
+def evolve(population, fitnessFunc):
+    scores = [fitnessFunc(cannon) for cannon in population]
+    totalScore = sum(scores)
+    probs = [score / totalScore for score in scores]
 
-        rel_pos.append(physics.distance(projectile, castle))
+    children = [generateSon(np.random.choice(population, 2, p=probs))
+                for _ in population]
 
-        if physics.collision(projectile, castle):
-            return 0
-
-    return min(rel_pos) if len(rel_pos) > 0 else 10.0
-
+    return children
